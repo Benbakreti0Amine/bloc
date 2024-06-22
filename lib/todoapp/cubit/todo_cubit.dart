@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:bloc_project/models/todo_model.dart';
+import 'package:bloc_project/todoapp/models/todo_model.dart';
 
 
 class TodoCubit extends Cubit<List<Todo>> {

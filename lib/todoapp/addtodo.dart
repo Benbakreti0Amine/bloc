@@ -1,4 +1,4 @@
-import 'package:bloc_project/cubit/todo_cubit.dart';
+import 'package:bloc_project/todoapp/cubit/todo_cubit.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
