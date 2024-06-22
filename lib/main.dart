@@ -30,9 +30,11 @@
 //   }
 // }
 
+import 'package:bloc_project/login_signup_app/bloc/auth_bloc.dart';
 import 'package:bloc_project/login_signup_app/login_screen.dart';
 import 'package:bloc_project/login_signup_app/pallete.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 void main() {
@@ -44,12 +46,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Pallete.backgroundColor,
+    return BlocProvider(
+      create: (context) => AuthBloc(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: Pallete.backgroundColor,
+        ),
+        home: const LoginScreen(),
       ),
-      home: const LoginScreen(),
     );
   }
 }
