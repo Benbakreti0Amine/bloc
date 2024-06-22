@@ -1,4 +1,5 @@
 import 'package:bloc_project/login_signup_app/bloc/auth_bloc.dart';
+import 'package:bloc_project/login_signup_app/home_Screen.dart';
 import 'package:bloc_project/login_signup_app/widgets/gradient_button.dart';
 import 'package:bloc_project/login_signup_app/widgets/login_field.dart';
 import 'package:bloc_project/login_signup_app/widgets/social_button.dart';
@@ -19,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocListener<AuthBloc, AuthState>(
+      body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -28,8 +29,17 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             );
           }
+          if(state is AuthSuccess){
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeScreen()), (route) => false,);
+          }
         },
-        child: SingleChildScrollView(
+        builder: (context, state) {
+          if (state is AuthLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
@@ -79,7 +89,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-        ),
+        );
+        },
       ),
     );
   }
